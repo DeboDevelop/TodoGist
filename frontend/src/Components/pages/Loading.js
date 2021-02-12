@@ -10,11 +10,16 @@ function Loading() {
     let query = useQuery();
     useEffect(() => {
         const code = query.get("code");
+        const state = query.get("state");
         axios
             .post(`${process.env.REACT_APP_BACKEND_URL}/auth/github`, {
                 code,
+                state,
             })
-            .then(res => console.log(res.data.token))
+            .then(res => {
+                //save it in local storage
+                console.log(res.data.token);
+            })
             .catch(err => console.log(err));
     }, [query]);
     return (
