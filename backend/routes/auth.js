@@ -4,11 +4,12 @@ const axios = require("axios");
 
 router.post("/github", async (req, res) => {
     const code = req.body.code;
-    const state = req.body.state;
+    if (code === null) {
+        return res.status(400).json({ error: "Code is null" });
+    }
     console.log(code);
-    console.log(state);
     let response = await axios.post(
-        `https://github.com/login/oauth/access_token?client_id=${process.env.CLIENT_ID}&client_secret=${process.env.CLIENT_SECRET}&code=${code}&state=${state}`,
+        `https://github.com/login/oauth/access_token?client_id=${process.env.CLIENT_ID}&client_secret=${process.env.CLIENT_SECRET}&code=${code}`,
         {},
         {
             headers: {
@@ -16,9 +17,12 @@ router.post("/github", async (req, res) => {
             },
         }
     );
-    console.log("Response :" + response);
     console.log("Response string :" + JSON.stringify(response.data));
-    res.status(202).json({ token: response.data.access_token });
+    //error -> response.data.error
+    if (response.data.error !== undefined) {
+        return res.status(400).json(response.data.error);
+    }
+    return res.status(202).json({ token: response.data.access_token });
 });
 
 module.exports = router;
