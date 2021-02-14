@@ -3,6 +3,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
 const authRoute = require("./routes/auth");
+const projectRoute = require("./routes/project");
 const app = express();
 
 app.use(cors());
@@ -20,6 +21,7 @@ db.on("error", error => console.error(error));
 db.once("open", () => console.log("Connected to Database"));
 
 app.use("/auth", authRoute);
+app.use("/project", projectRoute);
 
 const PORT = process.env.PORT || 8000;
 
