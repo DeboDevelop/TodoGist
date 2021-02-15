@@ -11,7 +11,17 @@ app.use(cors());
 
 app.use(express.json());
 
-mongoose.connect(process.env.DATABASE_URL, {
+let DATABASE_URL;
+
+if (process.env.ENVIRONMENT == "TEST") {
+    DATABASE_URL = process.env.TEST_DATABASE_URL;
+} else if (process.env.ENVIRONMENT == "PRODUCTION") {
+    DATABASE_URL = process.env.PRODUCTION_DATABASE_URL;
+} else {
+    DATABASE_URL = process.env.DEVELOPMENT_DATABASE_URL;
+}
+
+mongoose.connect(DATABASE_URL, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useFindAndModify: false,
@@ -28,3 +38,5 @@ app.use("/todo", todoRoute);
 const PORT = process.env.PORT || 8000;
 
 app.listen(PORT, () => console.log("Listening on http://localhost:" + PORT));
+
+module.exports = app;
