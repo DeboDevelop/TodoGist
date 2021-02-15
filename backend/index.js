@@ -4,6 +4,7 @@ const mongoose = require("mongoose");
 const cors = require("cors");
 const authRoute = require("./routes/auth");
 const projectRoute = require("./routes/project");
+const todoRoute = require("./routes/todos");
 const app = express();
 
 app.use(cors());
@@ -22,6 +23,7 @@ db.once("open", () => console.log("Connected to Database"));
 
 app.use("/auth", authRoute);
 app.use("/project", projectRoute);
+app.use("/todo", todoRoute);
 
 const PORT = process.env.PORT || 8000;
 

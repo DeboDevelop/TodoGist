@@ -5,7 +5,11 @@ const todoSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
-    descriptiom: {
+    project: {
+        type: String,
+        required: true,
+    },
+    description: {
         type: String,
         required: true,
     },
@@ -22,7 +26,7 @@ const todoSchema = new mongoose.Schema({
     updatedDate: {
         type: Date,
         required: true,
-        default: null,
+        default: Date.now,
     },
 });
 
