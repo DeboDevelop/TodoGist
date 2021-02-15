@@ -3,11 +3,16 @@ process.env.ENVIRONMENT = "TEST";
 const app = require("../index");
 const chai = require("chai");
 const chaiHttp = require("chai-http");
+const Project = require("../models/projects");
 
 const { expect } = chai;
 chai.use(chaiHttp);
 
 describe("Welcome to Project Testing!", () => {
+    after(done => {
+        Project.collection.deleteMany({});
+        done();
+    });
     describe("Test1", function () {
         it("Middleware getUser Failed 1", done => {
             chai.request(app)
@@ -45,7 +50,6 @@ describe("Welcome to Project Testing!", () => {
                 .send({ token: process.env.TEST_TOKEN, title: null })
                 .end((err, res) => {
                     expect(res).to.have.status(400);
-                    post_id = res.body._id;
                     done();
                 });
         });
