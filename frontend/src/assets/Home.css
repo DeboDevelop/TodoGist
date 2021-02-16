@@ -29,3 +29,7 @@
     color: #ffffff !important;
     background-color: #49c779 !important;
 }
+
+.green-button:hover {
+    background-color: #38955c !important;
+}
