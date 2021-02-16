@@ -9,3 +9,7 @@
     border-color: #000000;
     border-radius: 5px;
 }
+
+.modal-body {
+    background-color: #494848;
+}

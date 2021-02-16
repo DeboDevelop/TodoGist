@@ -26,8 +26,9 @@ function Home() {
         setState({ ...state, newProject: value });
     };
     const createProject = e => {
-        let token = localStorage.getItem("token");
         e.preventDefault();
+        let token = localStorage.getItem("token");
+
         axios
             .post(`${process.env.REACT_APP_BACKEND_URL}/project/create`, {
                 token: token,
@@ -36,6 +37,17 @@ function Home() {
             .then(res => {
                 setState({ ...state, newProject: "", projects: [...state.projects, res.data] });
             });
+    };
+    const handleProject = (item, index) => {
+        let newProjects = [];
+        for (let i = 0; i < state.projects.length; i++) {
+            if (i === index) {
+                newProjects.push(item);
+            } else {
+                newProjects.push(state.projects[i]);
+            }
+        }
+        setState({ ...state, projects: newProjects });
     };
     return localStorage.getItem("token") !== null && localStorage.getItem("token").length !== 0 ? (
         <div className="body-div d-flex flex-column pt-2">
@@ -65,8 +77,8 @@ function Home() {
                 </button>
             </div>
             <div>
-                {state.projects.map(item => {
-                    return <ProjectCard item={item} />;
+                {state.projects.map((item, index) => {
+                    return <ProjectCard item={item} index={index} handleProject={handleProject} />;
                 })}
             </div>
         </div>
