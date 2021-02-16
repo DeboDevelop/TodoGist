@@ -2,11 +2,12 @@ const express = require("express");
 const router = express.Router();
 const Todo = require("../models/todos");
 const { getUser } = require("../middleware/common");
-const { getTodo, validProject } = require("../middleware/todos");
+const { getTodo, validProject, findProject } = require("../middleware/todos");
 
 // Getting All
-router.get("/", getUser, validProject, async (req, res) => {
+router.post("/", getUser, validProject, async (req, res) => {
     let todos;
+    console.log("Inside todo");
     try {
         todos = await Todo.find({ user: res.user, project: req.body.project });
         res.status(200).json(todos);
@@ -21,7 +22,7 @@ router.get("/:id", getTodo, (req, res) => {
 });
 
 // Creating one
-router.post("/", getUser, validProject, async (req, res) => {
+router.post("/create", getUser, validProject, async (req, res) => {
     if (req.body.description === "" || req.body.description === undefined || req.body.description === null) {
         return res.status(400).json({ err: "No Description is given" });
     }
@@ -32,6 +33,8 @@ router.post("/", getUser, validProject, async (req, res) => {
     });
     try {
         const newTodo = await todo.save();
+        res.project.listOfTodo += 1;
+        await res.project.save();
         return res.status(201).json(newTodo);
     } catch (err) {
         return res.status(400).json({ message: err.message });
@@ -56,9 +59,11 @@ router.patch("/:id", getTodo, async (req, res) => {
 });
 
 // Deleting One
-router.delete("/:id", getTodo, async (req, res) => {
+router.delete("/:id", getTodo, findProject, async (req, res) => {
     try {
         await res.todo.remove();
+        res.project.listOfTodo -= 1;
+        await res.project.save();
         res.json({ message: "Deleted Todo" });
     } catch (err) {
         res.status(500).json({ message: err.message });

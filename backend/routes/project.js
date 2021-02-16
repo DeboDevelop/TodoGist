@@ -21,7 +21,7 @@ router.get("/:id", getProject, (req, res) => {
 });
 
 // Creating one
-router.post("/", getUser, async (req, res) => {
+router.post("/create", getUser, async (req, res) => {
     if (req.body.title === "" || req.body.title === undefined || req.body.title === null) {
         return res.status(400).json({ err: "No title is given" });
     }

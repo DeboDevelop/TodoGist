@@ -16,7 +16,7 @@ describe("Welcome to Project Testing!", () => {
     describe("Test1", function () {
         it("Middleware getUser Failed 1", done => {
             chai.request(app)
-                .get("/project")
+                .post("/project")
                 .send({ token: null })
                 .end((err, res) => {
                     expect(res).to.have.status(400);
@@ -25,7 +25,7 @@ describe("Welcome to Project Testing!", () => {
         });
         it("Middleware getUser Failed 2", done => {
             chai.request(app)
-                .get("/project")
+                .post("/project")
                 .send({ token: "123456789" })
                 .end((err, res) => {
                     expect(res).to.have.status(500);
@@ -37,7 +37,7 @@ describe("Welcome to Project Testing!", () => {
     describe("Test2", function () {
         it("POST Project Success", done => {
             chai.request(app)
-                .post("/project")
+                .post("/project/create")
                 .send({ token: process.env.TEST_TOKEN, title: "Project Test" })
                 .end((err, res) => {
                     expect(res).to.have.status(201);
@@ -46,7 +46,7 @@ describe("Welcome to Project Testing!", () => {
         });
         it("POST Project Failed", done => {
             chai.request(app)
-                .post("/project")
+                .post("/project/create")
                 .send({ token: process.env.TEST_TOKEN, title: null })
                 .end((err, res) => {
                     expect(res).to.have.status(400);
@@ -55,7 +55,7 @@ describe("Welcome to Project Testing!", () => {
         });
         it("GET Project Sucess", done => {
             chai.request(app)
-                .get("/project")
+                .post("/project")
                 .send({ token: process.env.TEST_TOKEN })
                 .end((err, res) => {
                     expect(res).to.have.status(200);
@@ -68,7 +68,7 @@ describe("Welcome to Project Testing!", () => {
         let post_id;
         before(done => {
             chai.request(app)
-                .post("/project")
+                .post("/project/create")
                 .send({ token: process.env.TEST_TOKEN, title: "GET ID TEST" })
                 .end((err, res) => {
                     post_id = res.body._id;
@@ -96,7 +96,7 @@ describe("Welcome to Project Testing!", () => {
         });
         it("PATCH Project by id Success", done => {
             chai.request(app)
-                .get(`/project/${post_id}`)
+                .patch(`/project/${post_id}`)
                 .send({ token: process.env.TEST_TOKEN, title: "PATCH ID TEST" })
                 .end((err, res) => {
                     expect(res).to.have.status(200);
@@ -106,7 +106,7 @@ describe("Welcome to Project Testing!", () => {
         });
         it("PATCH Project by id Failed", done => {
             chai.request(app)
-                .get("/project/123456")
+                .patch("/project/123456")
                 .send({ token: process.env.TEST_TOKEN, title: "PATCH ID TEST" })
                 .end((err, res) => {
                     expect(res).to.have.status(500);

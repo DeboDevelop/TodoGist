@@ -31,4 +31,19 @@ async function validProject(req, res, next) {
     next();
 }
 
-module.exports = { getTodo, validProject };
+async function findProject(req, res, next) {
+    let project;
+    try {
+        project = await Project.findById(res.todo.project);
+        if (project == null) {
+            return res.status(404).json({ message: "Cannot find project" });
+        }
+    } catch (err) {
+        return res.status(500).json({ message: err.message });
+    }
+
+    res.project = project;
+    next();
+}
+
+module.exports = { getTodo, validProject, findProject };
