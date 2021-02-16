@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Redirect, useHistory } from "react-router-dom";
-import Button from "react-bootstrap/Button";
-import "../../assets/home.css";
+import "../../assets/Home.css";
 import axios from "axios";
+import ProjectCard from "../common/ProjectCard";
 
 function Home() {
     let history = useHistory();
@@ -29,21 +29,21 @@ function Home() {
                         <h4 className="text-center banner-text">Create new Project</h4>
                         <label className="banner-text">Project Name: </label>
                         <input type="text" className="my-form" />
-                        <Button className="create-button">Create</Button>
+                        <button className="btn create-button green-button">Create</button>
                     </form>
                 </div>
-                <Button
-                    className="button my-auto mr-3"
+                <button
+                    className="button btn my-auto mr-3 green-button"
                     onClick={() => {
                         localStorage.removeItem("token");
                         history.push("/login");
                     }}>
                     Logout
-                </Button>
+                </button>
             </div>
             <div>
-                {state.projects.map(items => {
-                    return <h1>{items.title}</h1>;
+                {state.projects.map(item => {
+                    return <ProjectCard item={item} />;
                 })}
             </div>
         </div>

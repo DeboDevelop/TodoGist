@@ -1,0 +1,11 @@
+.txt {
+    color: #ffffff;
+}
+
+.card-div {
+    background-color: #494848;
+    border: solid;
+    border-width: 1px;
+    border-color: #000000;
+    border-radius: 5px;
+}

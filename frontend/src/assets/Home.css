@@ -22,4 +22,10 @@
 
 .body-div {
     background-color: #333333;
+    min-height: 100vh;
+}
+
+.green-button {
+    color: #ffffff !important;
+    background-color: #49c779 !important;
 }
