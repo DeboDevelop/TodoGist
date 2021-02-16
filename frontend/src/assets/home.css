@@ -1,0 +1,25 @@
+.button {
+    height: 40px;
+}
+
+.my-form {
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.create-button {
+    margin-top: -5px;
+}
+
+.banner-text {
+    color: #ffffff;
+}
+
+.banner-div {
+    background-color: #494848;
+    border-radius: 20px;
+}
+
+.body-div {
+    background-color: #333333;
+}

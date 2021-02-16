@@ -5,7 +5,7 @@ const { getUser } = require("../middleware/common");
 const { getProject } = require("../middleware/projects");
 
 // Getting All
-router.get("/", getUser, async (req, res) => {
+router.post("/", getUser, async (req, res) => {
     let projects;
     try {
         projects = await Project.find({ user: res.user });
