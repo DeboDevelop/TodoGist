@@ -8,6 +8,27 @@ function useQuery() {
     return new URLSearchParams(useLocation().search);
 }
 
+function formatFile(todos, project) {
+    let result = `# ${project} \n\n`;
+    let completeTodo = "";
+    let incompleteTodo = "";
+    let count = 0;
+    for (let i = 0; i < todos.length; i++) {
+        if (todos[i].status === true) {
+            count++;
+            completeTodo += `- [x] ${todos[i].description}\n`;
+        } else {
+            incompleteTodo += `- [ ] ${todos[i].description}\n`;
+        }
+    }
+    result += `**Summary:** ${count}/${todos.length} completed\n\n\n`;
+    result += `### Pending\n\n`;
+    result += incompleteTodo + "\n";
+    result += `### Completed\n\n`;
+    result += completeTodo + "\n";
+    return result;
+}
+
 function Todo() {
     const { id } = useParams();
     let query = useQuery();
@@ -64,6 +85,37 @@ function Todo() {
         }
         setState({ ...state, todos: newTodo });
     };
+    const exportGist = e => {
+        e.preventDefault();
+        let token = localStorage.getItem("token");
+        let project_name = query.get("name");
+        let result = formatFile(state.todos, project_name);
+        project_name += ".md";
+        let data = {
+            public: false,
+            files: {},
+        };
+        data.files[project_name] = { content: result };
+        console.log(data);
+        console.log("Token: " + token);
+        let header = {
+            headers: {
+                Authorization: `token ${token}`,
+                Accept: "application/vnd.github.v3+json",
+            },
+        };
+        // axios.defaults.headers.common["Authorization"] = `token ${token}`;
+        // axios.defaults.headers.common["Accept"] = "application/vnd.github.v3+json";
+        axios
+            .post("https://api.github.com/gists", data, header)
+            .then(res => {
+                if (res.status === 201) {
+                    alert("Exported as Gist");
+                }
+                console.log(res.data);
+            })
+            .catch(err => console.log(err));
+    };
     return localStorage.getItem("token") !== null && localStorage.getItem("token").length !== 0 ? (
         <div className="body-div d-flex flex-column pt-2">
             <div className="d-flex flex-row justify-content-between banner-div flex-div">
@@ -82,7 +134,9 @@ function Todo() {
                         </button>
                     </form>
                 </div>
-                <button className="btn my-auto mr-3 green-button">Export as Gist</button>
+                <button className="btn my-auto mr-3 green-button" onClick={e => exportGist(e)}>
+                    Export as Gist
+                </button>
             </div>
             <div>
                 {state.todos.map((item, index) => {
