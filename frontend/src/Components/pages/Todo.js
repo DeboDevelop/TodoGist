@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useParams, Redirect, useLocation } from "react-router-dom";
 import axios from "axios";
 import TodoCard from "../common/TodoCard";
-import "../../assets/Home.css";
+import "../../assets/css/Home.css";
 
 function useQuery() {
     return new URLSearchParams(useLocation().search);

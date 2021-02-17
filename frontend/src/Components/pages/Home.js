@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Redirect, useHistory } from "react-router-dom";
-import "../../assets/Home.css";
+import "../../assets/css/Home.css";
 import axios from "axios";
 import ProjectCard from "../common/ProjectCard";
 

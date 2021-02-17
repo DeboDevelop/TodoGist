@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "../../assets/ProjectCard.css";
+import "../../assets/css/ProjectCard.css";
 import Modal from "react-bootstrap/Modal";
 import axios from "axios";
 import { useHistory } from "react-router-dom";

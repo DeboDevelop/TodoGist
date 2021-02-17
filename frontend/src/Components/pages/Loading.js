@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import axios from "axios";
 import { Redirect, useHistory } from "react-router-dom";
+import loadingGif from "../../assets/img/loading.gif";
 
 function useQuery() {
     return new URLSearchParams(useLocation().search);
@@ -29,8 +30,8 @@ function Loading() {
         }
     }, [query, history]);
     return localStorage.getItem("token") === null || localStorage.getItem("token").length === 0 ? (
-        <div>
-            <h1>Loading....</h1>
+        <div className="login-div">
+            <img src={loadingGif} alt="Loading ..." />
         </div>
     ) : (
         <Redirect to="/" />
