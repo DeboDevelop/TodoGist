@@ -50,9 +50,9 @@ function TodoCard({ item, index, handleTodo, hanldeDeleteTodo, project }) {
     };
     return (
         <>
-            <div className="d-flex flex-row justify-content-between mx-4 my-2 p-1 card-div">
-                <div>
-                    <button className="btn green-button" onClick={handleShow}>
+            <div className="d-flex flex-div-card flex-row justify-content-between mx-4 my-2 p-1 card-div">
+                <div className="flex-div-card">
+                    <button className="btn green-button media-btn" onClick={handleShow}>
                         Edit
                     </button>
                     <span
@@ -63,7 +63,7 @@ function TodoCard({ item, index, handleTodo, hanldeDeleteTodo, project }) {
                         {item.description}
                     </span>
                 </div>
-                <div className="px-2">
+                <div className="px-2 flex-div-card">
                     <button className="btn green-button" onClick={e => deleteTodo(e)}>
                         Delete
                     </button>

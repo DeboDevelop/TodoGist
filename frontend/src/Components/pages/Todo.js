@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useParams, Redirect, useLocation } from "react-router-dom";
 import axios from "axios";
 import TodoCard from "../common/TodoCard";
+import "../../assets/Home.css";
 
 function useQuery() {
     return new URLSearchParams(useLocation().search);
@@ -65,9 +66,9 @@ function Todo() {
     };
     return localStorage.getItem("token") !== null && localStorage.getItem("token").length !== 0 ? (
         <div className="body-div d-flex flex-column pt-2">
-            <div className="d-flex flex-row justify-content-between banner-div">
+            <div className="d-flex flex-row justify-content-between banner-div flex-div">
                 <div className="mx-4">
-                    <form className="form-group">
+                    <form className="form-group flex-div">
                         <h4 className="text-center banner-text">Create a new Todo</h4>
                         <label className="banner-text">Todo Description: </label>
                         <input
@@ -81,7 +82,7 @@ function Todo() {
                         </button>
                     </form>
                 </div>
-                <button className="button btn my-auto mr-3 green-button">Export as Gist</button>
+                <button className="btn my-auto mr-3 green-button">Export as Gist</button>
             </div>
             <div>
                 {state.todos.map((item, index) => {

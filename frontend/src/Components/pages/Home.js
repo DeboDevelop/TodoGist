@@ -51,9 +51,9 @@ function Home() {
     };
     return localStorage.getItem("token") !== null && localStorage.getItem("token").length !== 0 ? (
         <div className="body-div d-flex flex-column pt-2">
-            <div className="d-flex flex-row justify-content-between banner-div">
+            <div className="d-flex flex-row justify-content-between banner-div flex-div">
                 <div className="mx-4">
-                    <form className="form-group">
+                    <form className="form-group flex-div">
                         <h4 className="text-center banner-text">Create new Project</h4>
                         <label className="banner-text">Project Name: </label>
                         <input
