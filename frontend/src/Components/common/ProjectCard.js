@@ -2,8 +2,10 @@ import React, { useState } from "react";
 import "../../assets/ProjectCard.css";
 import Modal from "react-bootstrap/Modal";
 import axios from "axios";
+import { useHistory } from "react-router-dom";
 
 function ProjectCard({ item, index, handleProject }) {
+    let history = useHistory();
     const [show, setShow] = useState(false);
     const [title, setTitle] = useState("");
     const handleClose = () => setShow(false);
@@ -27,7 +29,7 @@ function ProjectCard({ item, index, handleProject }) {
             .catch(err => console.log(err));
     };
     const openTodo = () => {
-        console.log("Wait!!!!");
+        history.push(`/project/${item._id}?name=${item.title}`);
     };
     return (
         <>

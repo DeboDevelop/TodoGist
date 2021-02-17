@@ -7,7 +7,6 @@ const { getTodo, validProject, findProject } = require("../middleware/todos");
 // Getting All
 router.post("/", getUser, validProject, async (req, res) => {
     let todos;
-    console.log("Inside todo");
     try {
         todos = await Todo.find({ user: res.user, project: req.body.project });
         res.status(200).json(todos);

@@ -3,6 +3,7 @@ import { Switch, Route } from "react-router-dom";
 import Home from "./Components/pages/Home";
 import Loading from "./Components/pages/Loading";
 import Login from "./Components/pages/Login";
+import Todo from "./Components/pages/Todo";
 
 function App() {
     return (
@@ -10,6 +11,9 @@ function App() {
             <Switch>
                 <Route exact path="/">
                     <Home />
+                </Route>
+                <Route exact path="/project/:id">
+                    <Todo />
                 </Route>
                 <Route exact path="/github/callback">
                     <Loading />
