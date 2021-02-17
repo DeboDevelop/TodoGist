@@ -54,6 +54,15 @@ function Todo() {
         }
         setState({ ...state, todos: newTodo });
     };
+    const hanldeDeleteTodo = index => {
+        let newTodo = [];
+        for (let i = 0; i < state.todos.length; i++) {
+            if (i !== index) {
+                newTodo.push(state.todos[i]);
+            }
+        }
+        setState({ ...state, todos: newTodo });
+    };
     return localStorage.getItem("token") !== null && localStorage.getItem("token").length !== 0 ? (
         <div className="body-div d-flex flex-column pt-2">
             <div className="d-flex flex-row justify-content-between banner-div">
@@ -76,7 +85,15 @@ function Todo() {
             </div>
             <div>
                 {state.todos.map((item, index) => {
-                    return <TodoCard item={item} index={index} handleTodo={handleTodo} />;
+                    return (
+                        <TodoCard
+                            item={item}
+                            index={index}
+                            handleTodo={handleTodo}
+                            hanldeDeleteTodo={hanldeDeleteTodo}
+                            project={id}
+                        />
+                    );
                 })}
             </div>
         </div>

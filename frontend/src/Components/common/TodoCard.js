@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Modal from "react-bootstrap/Modal";
 import axios from "axios";
 
-function TodoCard({ item, index, handleTodo }) {
+function TodoCard({ item, index, handleTodo, hanldeDeleteTodo, project }) {
     const [state, setState] = useState({
         show: false,
         description: "",
@@ -13,7 +13,7 @@ function TodoCard({ item, index, handleTodo }) {
     const handleChange = value => {
         setState({ ...state, description: value });
     };
-    const handleStatus = value => {
+    const handleStatus = () => {
         setState({ ...state, status: !state.status });
     };
     const updateTodo = e => {
@@ -38,6 +38,15 @@ function TodoCard({ item, index, handleTodo }) {
     const deleteTodo = e => {
         e.preventDefault();
         let token = localStorage.getItem("token");
+        axios
+            .delete(`${process.env.REACT_APP_BACKEND_URL}/todo/${item._id}`, {
+                token: token,
+                project: project,
+            })
+            .then(res => {
+                hanldeDeleteTodo(index);
+            })
+            .catch(err => console.log(err));
     };
     return (
         <>
@@ -80,7 +89,7 @@ function TodoCard({ item, index, handleTodo }) {
                             type="checkbox"
                             class="form-check-input ml-1"
                             defaultChecked={state.status}
-                            onChange={e => handleStatus(e.target.value)}
+                            onChange={() => handleStatus()}
                         />
                         <span className="txt ml-4">Completed</span>
                         <br />
