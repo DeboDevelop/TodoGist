@@ -2,6 +2,11 @@
     height: 40px;
 }
 
+.loading {
+    width: 300px;
+    height: 300px;
+}
+
 .my-form {
     margin-left: 10px;
     margin-right: 10px;

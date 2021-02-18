@@ -3,12 +3,14 @@ import { Redirect, useHistory } from "react-router-dom";
 import "../../assets/css/Home.css";
 import axios from "axios";
 import ProjectCard from "../common/ProjectCard";
+import loadingGif from "../../assets/img/loading.gif";
 
 function Home() {
     let history = useHistory();
     const [state, setState] = useState({
         newProject: "",
         projects: [],
+        loading: true,
     });
     useEffect(() => {
         let token = localStorage.getItem("token");
@@ -17,9 +19,12 @@ function Home() {
                 token: token,
             })
             .then(res => {
-                setState({ ...state, projects: res.data });
+                setState({ ...state, projects: res.data, loading: false });
             })
-            .catch(err => console.log(err));
+            .catch(err => {
+                console.log(err);
+                setState({ ...state, loading: false });
+            });
         // eslint-disable-next-line
     }, []);
     const handleChange = value => {
@@ -76,11 +81,15 @@ function Home() {
                     Logout
                 </button>
             </div>
-            <div>
-                {state.projects.map((item, index) => {
-                    return <ProjectCard item={item} index={index} handleProject={handleProject} />;
-                })}
-            </div>
+            {state.loading === true ? (
+                <img src={loadingGif} alt="loading" className="mx-auto loading" />
+            ) : (
+                <div>
+                    {state.projects.map((item, index) => {
+                        return <ProjectCard item={item} index={index} handleProject={handleProject} />;
+                    })}
+                </div>
+            )}
         </div>
     ) : (
         <Redirect to="/login" />

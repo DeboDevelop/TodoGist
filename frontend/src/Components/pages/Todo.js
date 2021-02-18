@@ -3,6 +3,7 @@ import { useParams, Redirect, useLocation } from "react-router-dom";
 import axios from "axios";
 import TodoCard from "../common/TodoCard";
 import "../../assets/css/Home.css";
+import loadingGif from "../../assets/img/loading.gif";
 
 function useQuery() {
     return new URLSearchParams(useLocation().search);
@@ -35,6 +36,7 @@ function Todo() {
     const [state, setState] = useState({
         newTodo: "",
         todos: [],
+        loading: true,
     });
     useEffect(() => {
         let token = localStorage.getItem("token");
@@ -44,9 +46,12 @@ function Todo() {
                 project: id,
             })
             .then(res => {
-                setState({ ...state, todos: res.data });
+                setState({ ...state, todos: res.data, loading: false });
             })
-            .catch(err => console.log(err));
+            .catch(err => {
+                console.log(err);
+                setState({ ...state, loading: false });
+            });
         // eslint-disable-next-line
     }, []);
     const handleChange = value => {
@@ -138,19 +143,23 @@ function Todo() {
                     Export as Gist
                 </button>
             </div>
-            <div>
-                {state.todos.map((item, index) => {
-                    return (
-                        <TodoCard
-                            item={item}
-                            index={index}
-                            handleTodo={handleTodo}
-                            hanldeDeleteTodo={hanldeDeleteTodo}
-                            project={id}
-                        />
-                    );
-                })}
-            </div>
+            {state.loading === true ? (
+                <img src={loadingGif} alt="loading" className="mx-auto loading" />
+            ) : (
+                <div>
+                    {state.todos.map((item, index) => {
+                        return (
+                            <TodoCard
+                                item={item}
+                                index={index}
+                                handleTodo={handleTodo}
+                                hanldeDeleteTodo={hanldeDeleteTodo}
+                                project={id}
+                            />
+                        );
+                    })}
+                </div>
+            )}
         </div>
     ) : (
         <Redirect to="/login" />
