@@ -84,7 +84,7 @@ function Home() {
             {state.loading === true ? (
                 <img src={loadingGif} alt="loading" className="mx-auto loading" />
             ) : (
-                <div>
+                <div className="d-flex flex-row flex-wrap justify-content-center">
                     {state.projects.map((item, index) => {
                         return <ProjectCard item={item} index={index} handleProject={handleProject} />;
                     })}

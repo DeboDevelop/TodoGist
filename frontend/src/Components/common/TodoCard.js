@@ -50,21 +50,19 @@ function TodoCard({ item, index, handleTodo, hanldeDeleteTodo, project }) {
     };
     return (
         <>
-            <div className="d-flex flex-div-card flex-row justify-content-between mx-4 my-2 p-1 card-div">
-                <div className="flex-div-card">
-                    <button className="btn green-button media-btn" onClick={handleShow}>
+            <div className="d-flex flex-column justify-content-center align-items-center p-2 m-2 card-div">
+                <span
+                    className="txt"
+                    style={{
+                        textDecoration: item.status ? "line-through" : "",
+                    }}>
+                    {item.description}
+                </span>
+                <div className="d-flex flex-row justify-content-center">
+                    <button className="btn green-button mx-1" onClick={handleShow}>
                         Edit
                     </button>
-                    <span
-                        className="txt mx-4"
-                        style={{
-                            textDecoration: item.status ? "line-through" : "",
-                        }}>
-                        {item.description}
-                    </span>
-                </div>
-                <div className="px-2 flex-div-card">
-                    <button className="btn green-button" onClick={e => deleteTodo(e)}>
+                    <button className="btn green-button mx-1" onClick={e => deleteTodo(e)}>
                         Delete
                     </button>
                 </div>

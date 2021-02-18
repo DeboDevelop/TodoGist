@@ -15,12 +15,4 @@
 }
 
 @media only screen and (max-width: 600px) {
-    .flex-div-card {
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-    }
-    .media-btn {
-        margin-left: 1.5rem !important;
-    }
 }

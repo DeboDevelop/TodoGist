@@ -33,16 +33,15 @@ function ProjectCard({ item, index, handleProject }) {
     };
     return (
         <>
-            <div className="d-flex flex-div-card flex-row justify-content-between mx-4 my-2 p-1 card-div">
-                <div className="flex-div-card">
-                    <button className="btn green-button media-btn" onClick={handleShow}>
+            <div className="d-flex flex-column justify-content-center align-items-center p-2 m-2 card-div">
+                <span className="txt">{item.title}</span>
+                <span className="txt">{item.listOfTodo} Items</span>
+
+                <div className="d-flex flex-row justify-content-center">
+                    <button className="btn green-button mx-1" onClick={handleShow}>
                         Edit
                     </button>
-                    <span className="txt mx-4">{item.title}</span>
-                </div>
-                <div className="px-2 flex-div-card">
-                    <span className="txt px-2">{item.listOfTodo} Items</span>
-                    <button className="btn green-button" onClick={() => openTodo()}>
+                    <button className="btn green-button mx-1" onClick={() => openTodo()}>
                         Open Todo
                     </button>
                 </div>

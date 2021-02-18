@@ -146,7 +146,7 @@ function Todo() {
             {state.loading === true ? (
                 <img src={loadingGif} alt="loading" className="mx-auto loading" />
             ) : (
-                <div>
+                <div className="d-flex flex-row flex-wrap justify-content-center">
                     {state.todos.map((item, index) => {
                         return (
                             <TodoCard
