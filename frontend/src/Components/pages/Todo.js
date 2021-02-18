@@ -123,7 +123,7 @@ function Todo() {
     };
     return localStorage.getItem("token") !== null && localStorage.getItem("token").length !== 0 ? (
         <div className="body-div d-flex flex-column pt-2">
-            <div className="d-flex flex-row justify-content-between banner-div flex-div">
+            <div className="flex-col-div banner-div flex-div">
                 <div className="mx-4">
                     <form className="form-group flex-div">
                         <h4 className="text-center banner-text">Create a new Todo</h4>
@@ -139,7 +139,7 @@ function Todo() {
                         </button>
                     </form>
                 </div>
-                <button className="btn my-auto mr-3 green-button" onClick={e => exportGist(e)}>
+                <button className="btn my-sm-auto mr-3 green-button export" onClick={e => exportGist(e)}>
                     Export as Gist
                 </button>
             </div>

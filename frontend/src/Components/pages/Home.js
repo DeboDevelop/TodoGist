@@ -56,7 +56,7 @@ function Home() {
     };
     return localStorage.getItem("token") !== null && localStorage.getItem("token").length !== 0 ? (
         <div className="body-div d-flex flex-column pt-2">
-            <div className="d-flex flex-row justify-content-between banner-div flex-div">
+            <div className="flex-col-div banner-div flex-div">
                 <div className="mx-4">
                     <form className="form-group flex-div">
                         <h4 className="text-center banner-text">Create new Project</h4>
@@ -73,7 +73,7 @@ function Home() {
                     </form>
                 </div>
                 <button
-                    className="button btn my-auto mr-3 green-button"
+                    className="button btn my-sm-auto mr-3 green-button logout"
                     onClick={() => {
                         localStorage.removeItem("token");
                         history.push("/login");

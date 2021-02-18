@@ -39,11 +39,31 @@
     background-color: #38955c !important;
 }
 
+.flex-col-div {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
 @media only screen and (max-width: 600px) {
     .flex-div {
         display: flex;
         flex-direction: column;
         align-items: center;
+    }
+    .flex-col-div {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    .logout {
+        margin-left: 18px;
+        margin-bottom: 15px;
+    }
+    .export {
+        margin-left: 15px;
+        margin-bottom: 15px;
     }
     .my-form {
         margin-bottom: 20px;
