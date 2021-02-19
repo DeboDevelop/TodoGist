@@ -119,7 +119,10 @@ function Todo() {
                 }
                 console.log(res.data);
             })
-            .catch(err => console.log(err));
+            .catch(err => {
+                alert("Failed to export as Gist");
+                console.log(err);
+            });
     };
     return localStorage.getItem("token") !== null && localStorage.getItem("token").length !== 0 ? (
         <div className="body-div d-flex flex-column pt-2">
