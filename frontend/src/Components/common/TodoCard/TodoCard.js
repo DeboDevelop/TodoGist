@@ -55,7 +55,8 @@ function TodoCard({ item, index, handleTodo, hanldeDeleteTodo, project }) {
                     className="txt"
                     style={{
                         textDecoration: item.status ? "line-through" : "",
-                    }}>
+                    }}
+                    data-testid="description">
                     {item.description}
                 </span>
                 <div className="d-flex flex-row justify-content-center">

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Redirect, useHistory } from "react-router-dom";
 import "../../assets/css/Home.css";
 import axios from "axios";
-import ProjectCard from "../common/ProjectCard";
+import ProjectCard from "../common/ProjectCard/ProjectCard";
 import loadingGif from "../../assets/img/loading.gif";
 
 function Home() {

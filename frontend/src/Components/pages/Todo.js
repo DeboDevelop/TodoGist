@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams, Redirect, useLocation } from "react-router-dom";
 import axios from "axios";
-import TodoCard from "../common/TodoCard";
+import TodoCard from "../common/TodoCard/TodoCard";
 import "../../assets/css/Home.css";
 import loadingGif from "../../assets/img/loading.gif";
 
