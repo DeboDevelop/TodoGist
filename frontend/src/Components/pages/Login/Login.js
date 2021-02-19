@@ -1,6 +1,6 @@
 import React from "react";
 import { Redirect } from "react-router-dom";
-import "../../assets/css/Login.css";
+import "../../../assets/css/Login.css";
 
 function Login() {
     return localStorage.getItem("token") === null || localStorage.getItem("token").length === 0 ? (

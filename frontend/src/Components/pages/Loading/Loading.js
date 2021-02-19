@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import axios from "axios";
 import { Redirect, useHistory } from "react-router-dom";
-import loadingGif from "../../assets/img/loading.gif";
+import loadingGif from "../../../assets/img/loading.gif";
 
 function useQuery() {
     return new URLSearchParams(useLocation().search);

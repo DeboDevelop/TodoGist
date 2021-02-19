@@ -1,9 +1,9 @@
 import React from "react";
 import { Switch, Route } from "react-router-dom";
-import Home from "./Components/pages/Home";
-import Loading from "./Components/pages/Loading";
-import Login from "./Components/pages/Login";
-import Todo from "./Components/pages/Todo";
+import Home from "./Components/pages/Home/Home";
+import Loading from "./Components/pages/Loading/Loading";
+import Login from "./Components/pages/Login/Login";
+import Todo from "./Components/pages/Todo/Todo";
 
 function App() {
     return (
