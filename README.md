@@ -1,6 +1,8 @@
 # TodoGist
 
-It is a project created for 1st Round of Hatio Innovations Private Limited.
+It is a project created for 1st Round of Hatio Innovations Private Limited. It is a Todo list Webapp with github Oauth and a feature to export as gist.
+
+Live Demo: [https://todogist-frontend.herokuapp.com/login](https://todogist-frontend.herokuapp.com/login)
 
 ## Features.
 
