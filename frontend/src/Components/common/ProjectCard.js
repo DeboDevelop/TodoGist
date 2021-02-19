@@ -34,8 +34,12 @@ function ProjectCard({ item, index, handleProject }) {
     return (
         <>
             <div className="d-flex flex-column justify-content-center align-items-center p-2 m-2 card-div">
-                <span className="txt">{item.title}</span>
-                <span className="txt">{item.listOfTodo} Items</span>
+                <span className="txt" data-testid="title">
+                    {item.title}
+                </span>
+                <span className="txt" data-testid="listOfTodo">
+                    {item.listOfTodo} Items
+                </span>
 
                 <div className="d-flex flex-row justify-content-center">
                     <button className="btn green-button mx-1" onClick={handleShow}>
